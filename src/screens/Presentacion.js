@@ -14,7 +14,7 @@ const Presentacion = () => {
     return (
             <View sx={ styles.frameImage} >
             <Image source={require('../image/logo.png')} 
-                   sx={ (orientacion) ? styles.ImagenV : styles.ImagenH} />                   
+                   sx={ (orientacion === 'vertical') ? styles.ImagenV : styles.ImagenH } />                   
             </View>
     )
 }
@@ -29,9 +29,9 @@ export default Presentacion;
         height: ['100%', '100%' ] 
     },
     
-    ImagenV:{
-    height: ['14%','15%'],
-    width: [240 , 500],  
+    ImagenV: {
+    height: [ '18%','16%'],
+    width: [ '90%' , '60%' ]  
     },
 
     ImagenH:{

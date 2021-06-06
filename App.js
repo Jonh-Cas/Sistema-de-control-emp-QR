@@ -26,12 +26,12 @@ const App = () => {
   const [state, setState] = useState(true);
   const [orientacion, setOrientacion] = useState('');
   const [empleado, setEmpleado] = useState({
-      emp_nombre: '',
-      emp_numero: '',
-      emp_status: '',      
-      emp_puesto: '',
-      emp_area: '',
-      emp_foto: '',
+      emp_nombre: "Pedro Pica Piedras",
+      emp_numero: "001456",
+      emp_puesto: "Gerente de QA", 
+      emp_area: "QA",
+      emp_status: "activo",
+      emp_foto: "https://cdn.pixabay.com/photo/2016/03/12/23/18/girl-1252995_960_720.jpg",
       emp_baja: '',
     });
 
@@ -43,39 +43,49 @@ const App = () => {
     orientacion,
     setEmpleado,
     setScreen,
-    setState
+    setState,
+    onChange
   }
 
+  const onChange = ({ window, screen }) => {
+    setDimensions({ window, screen });
 
-
-  const onChange = ({ window, pantalla }) => {
-    setDimensions({ window, pantalla });
   };
- 
-  console.log(dimensions.window.scale);
-  
+
   useEffect(() => {
     Dimensions.addEventListener("change", onChange);
-    (dimensions.window.height > dimensions.window.width ) ? setOrientacion(true): setOrientacion(false);                                                            // vertical                 
+    (dimensions.window.width > dimensions.window.height)
+    ? setOrientacion('horizontal')
+    : setOrientacion('vertical')
     return () => {
       Dimensions.removeEventListener("change", onChange);
     };
   });
 
+  // const cambioOrientacion = ( ) => {
+
+  //   return <ScannerQR />
+
+  // }
+  
+
   return (
     <EmpContext.Provider value={value} >
-
       <DripsyProvider theme={theme} >
-        <ScannerQR />
-      {/* {(screen === 0) ? <Presentacion /> 
-                : (screen === 1) ? <ScannerQR />     
-                : (screen === 2) ? <Activo  />                               
-                : <Text> Hola de nuevo</Text> } */}
-      </DripsyProvider>
 
+      <Activo />
+        {/* {(screen === 0) ? <Presentacion /> 
+                  : (screen === 1) ?  <ScannerQR />     
+                  : (screen === 2) ? <Activo  />                               
+                  : <Text> Hola de nuevo</Text> } */}
+        </DripsyProvider>
     </EmpContext.Provider>
   );
 }
 
 
 export default App;
+
+
+
+
