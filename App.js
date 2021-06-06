@@ -1,68 +1,81 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React, { useState } from 'react';
-// import type {Node} from 'react';
-// import { SafeAreaView } from 'react-native';
-import {ScanerQR} from './src/components/ScanerQR';
-import Presentacion from './src/screens/Presentacion';
+import React, { useState, useEffect } from "react";
+import { Dimensions } from "react-native";
 import {DripsyProvider} from 'dripsy';
+import {EmpContext} from './src/utils/EmpContext.js';
+import Presentacion from './src/screens/Presentacion';
+import ScannerQR from './src/screens/ScannerQR';
+import Activo from './src/screens/Activo';
+
+const window = Dimensions.get("window");
+const pantalla = Dimensions.get("screen");
 
 const theme = {
   colors: {
-    text: '#000',
-    background: '#fff',
-    primary: '#07c',
-    secondary: '#05a',
-    accent: '#609',
-    muted: '#f6f6f6',
-  },
+    primary: 'black',
 
-  fonts: {
-    body: 'system-ui, sans-serif',
-    heading: 'system-ui, sans-serif',
-    monospace: 'Menlo, monospace',
   },
-  fontWeights: {
-    body: 400,
-    heading: 700,
-    bold: 700,
-  },
-  lineHeights: {
-    body: 1.5,
-    heading: 1.125,
-  },
+  fontSizes: [14,20],
 
 }
 
- 
 
- const App = () => {
+const App = () => {
 
+  const [dimensions, setDimensions] = useState({ window, pantalla });
   const [screen, setScreen] = useState(0);
+  const [state, setState] = useState(true);
+  const [orientacion, setOrientacion] = useState('');
+  const [empleado, setEmpleado] = useState({
+      emp_nombre: '',
+      emp_numero: '',
+      emp_status: '',      
+      emp_puesto: '',
+      emp_area: '',
+      emp_foto: '',
+      emp_baja: '',
+    });
 
-    setTimeout(() => {
-       setScreen(1); 
-    }, 4000);
+  const value = {
+    dimensions,
+    screen,
+    state,
+    empleado,
+    orientacion,
+    setEmpleado,
+    setScreen,
+    setState
+  }
 
-   return (
-     <DripsyProvider theme={theme} >
 
-       {/* <Presentacion /> */}
-       {(screen === 0) ? <Presentacion /> : <ScanerQR /> }
-       
-     
-     </DripsyProvider>
 
-   );
- };
+  const onChange = ({ window, pantalla }) => {
+    setDimensions({ window, pantalla });
+  };
  
+  console.log(dimensions.window.scale);
+  
+  useEffect(() => {
+    Dimensions.addEventListener("change", onChange);
+    (dimensions.window.height > dimensions.window.width ) ? setOrientacion(true): setOrientacion(false);                                                            // vertical                 
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
+  });
+
+  return (
+    <EmpContext.Provider value={value} >
+
+      <DripsyProvider theme={theme} >
+        <ScannerQR />
+      {/* {(screen === 0) ? <Presentacion /> 
+                : (screen === 1) ? <ScannerQR />     
+                : (screen === 2) ? <Activo  />                               
+                : <Text> Hola de nuevo</Text> } */}
+      </DripsyProvider>
+
+    </EmpContext.Provider>
+  );
+}
 
 
- export default App;
- 
+export default App;
