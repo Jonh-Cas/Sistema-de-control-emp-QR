@@ -7,7 +7,7 @@ const Activo = () => {
 
     const datosContext = useContext(EmpContext);
     const {dimensions, empleado, setState, setScreen, sonidoActivo } = datosContext; 
-    const {emp_nombre, emp_numero, emp_status, emp_puesto, emp_area, emp_foto } = empleado;
+    const {emp_nombre, emp_numero, emp_status, emp_puesto, emp_area, emp_foto, setEmpleado } = empleado;
     const { window } = dimensions;
     let fecha = new Date();
     let option = {hour: "numeric", hour12:"false"}
@@ -24,12 +24,22 @@ const Activo = () => {
           }).then(e => console.log(e) )
             .catch(err => console.log(err));
             console.log(JSON.stringify(empleado));
+ 
     }
 
 
     setTimeout( () => {
         setScreen( 1 );
         setState(true);
+        setEmpleado({
+                emp_nombre: "",
+                emp_numero: "",
+                emp_puesto: "", 
+                emp_area: "",
+                emp_status: "",
+                emp_foto: "",
+                emp_baja: "",
+        })
     }, 2900);
 
     const styles = {

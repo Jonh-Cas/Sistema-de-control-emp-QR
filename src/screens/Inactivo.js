@@ -29,6 +29,15 @@ const Inactivo = () => {
     setTimeout( () => {
         setScreen( 1 );
         setState(true);
+        setEmpleado({
+            emp_nombre: "",
+            emp_numero: "",
+            emp_puesto: "", 
+            emp_area: "",
+            emp_status: "",
+            emp_foto: "",
+            emp_baja: "",
+    });
     }, 2900);
 
     const styles = {
