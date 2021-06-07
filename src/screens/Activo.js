@@ -2,18 +2,19 @@ import React, { useContext } from 'react'
 import { View, Text, Image } from 'dripsy';
 import { EmpContext } from '../utils/EmpContext';
 import axios from 'axios';
+import {reproducirSonido} from '../utils/SoundConfig';
 
 const Activo = () => {
 
     const datosContext = useContext(EmpContext);
-    const {dimensions, empleado, setState, setScreen, sonidoActivo } = datosContext; 
-    const {emp_nombre, emp_numero, emp_status, emp_puesto, emp_area, emp_foto, setEmpleado } = empleado;
+    const {dimensions, empleado, setState, setScreen, setEmpleado, whoosh } = datosContext; 
+    const {emp_nombre, emp_numero, emp_status, emp_puesto, emp_area, emp_foto} = empleado;
     const { window } = dimensions;
     let fecha = new Date();
     let option = {hour: "numeric", hour12:"false"}
 
 
-    sonidoActivo();
+    reproducirSonido(whoosh);
 
     const EnvioDatos = async() => {
 

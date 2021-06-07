@@ -1,32 +1,19 @@
 import React, { useContext } from 'react'
 import { View, Text, Image } from 'dripsy';
 import { EmpContext } from '../utils/EmpContext';
-import axios from 'axios';
+import {reproducirSonido} from '../utils/SoundConfig'
 
-const Activo = () => {
+const ErrorQR = () => {
 
     const datosContext = useContext(EmpContext);
-    const {dimensions, empleado, setState, setScreen, sonidoInactivo } = datosContext; 
+    const {dimensions, setState, setScreen, whooshy  } = datosContext; 
     const { window } = dimensions;
     let fecha = new Date();
     let option = {hour: "numeric", hour12:"false"}
 
 
-    sonidoInactivo();
+    reproducirSonido(whooshy);
   
-
-    const EnvioDatos = async() => {
-
-    await  axios({
-            method: 'post',
-            // url: '/login',
-            data: empleado,
-          }).then(e => console.log(e) )
-            .catch(err => console.log(err));
-            console.log(JSON.stringify(empleado));
-    }
-
-
     setTimeout( () => {
         setScreen( 1 );
         setState(true);
@@ -136,4 +123,4 @@ const Activo = () => {
     )
 }
 
-export default Activo;
+export default ErrorQR;
