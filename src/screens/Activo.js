@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { View, Text, Image } from 'dripsy';
-import { StyleSheet } from 'react-native' 
 import { EmpContext } from '../utils/EmpContext';
 import axios from 'axios';
 
@@ -13,7 +12,7 @@ const Activo = () => {
     let fecha = new Date();
     let option = {hour: "numeric", hour12:"false"}
 
-    console.log(JSON.stringify(empleado));
+  
 
     const EnvioDatos = async() => {
 
@@ -23,7 +22,7 @@ const Activo = () => {
             data: empleado,
           }).then(e => console.log(e) )
             .catch(err => console.log(err));
-
+            console.log(JSON.stringify(empleado));
     }
 
 
@@ -52,16 +51,16 @@ const Activo = () => {
         },
 
         photo: {
-            height: [window.height/2, window.height/2],
-            width: [window.width/2, window.width/6],
+            height: [window.height/2.5, window.height/1.5],
+            width: [window.width/2, window.width/4.5],
             marginTop: ['5%', '2%'],
-            marginLeft: [, '10%'],
+            marginLeft: [, '6%'],
             borderRadius: 15
         },
 
         frameStatus: {
             height: [window.height/13, window.height/10 ],
-                    width: [window.width/1.5, window.width/3 ],
+                    width: [window.width/1.5, window.width/2.5 ],
                     backgroundColor: '#6AEF92',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -72,32 +71,30 @@ const Activo = () => {
 
         estatus: {
             color: '#FFF',
-            fontSize: [20, 30 ]
+            fontSize: [20, 25 ]
         },
 
         frameText: {
             marginTop: 10,
-            marginLeft: [, '30%'],
+            marginLeft: [, '25%'],
+            height: [window.height/4, ]
         }, 
 
         textName: {
             fontSize: [17,25],
             marginTop: [, '7%'],
             borderBottomColor: '#000',
-            borderBottomWidth: 1,
         },
 
         textData: {
             fontSize: [18,25],
             borderBottomColor: '#000',
-            borderBottomWidth: 1,
             marginTop: [,'4%']
         },
 
         frameDate: {
-            alignItems: ['center', 'flex-end' ],
+            alignItems: ['center', 'flex-end'],
             height: [window.height, window.height],
-            marginTop: [, 200 ]
         },
 
     }
@@ -112,7 +109,7 @@ const Activo = () => {
                 </View>
                  
                  <View sx={styles.framePhoto} >
-                     <Image source={ {uri: emp_foto } }
+                     <Image source={ { uri: emp_foto } }
                             sx={styles.photo} />
                 <View>
 
@@ -135,7 +132,7 @@ const Activo = () => {
                     {fecha.toLocaleDateString() + ' ' } 
                     {fecha.toLocaleTimeString('en-US', option) }
                  </Text>
-                 <Text>Sistema de control de Accesso </Text>
+                 <Text> Sistema de control de Accesso </Text>
              </View>
 
         </View>

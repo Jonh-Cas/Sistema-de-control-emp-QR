@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Dimensions } from "react-native";
 import {DripsyProvider} from 'dripsy';
+
 import {EmpContext} from './src/utils/EmpContext.js';
 import Presentacion from './src/screens/Presentacion';
 import ScannerQR from './src/screens/ScannerQR';
 import Activo from './src/screens/Activo';
+import Inactivo from './src/screens/Inactivo';
+import ErrorQR from './src/screens/ErrorQR';
 
 const window = Dimensions.get("window");
 const pantalla = Dimensions.get("screen");
@@ -26,13 +29,13 @@ const App = () => {
   const [state, setState] = useState(true);
   const [orientacion, setOrientacion] = useState('');
   const [empleado, setEmpleado] = useState({
-      emp_nombre: "Pedro Pica Piedras",
-      emp_numero: "001456",
-      emp_puesto: "Gerente de QA", 
-      emp_area: "QA",
-      emp_status: "activo",
-      emp_foto: "https://cdn.pixabay.com/photo/2016/03/12/23/18/girl-1252995_960_720.jpg",
-      emp_baja: '',
+      emp_nombre: "",
+      emp_numero: "",
+      emp_puesto: "", 
+      emp_area: "",
+      emp_status: "",
+      emp_foto: "",
+      emp_baja: "",
     });
 
   const value = {
@@ -49,7 +52,7 @@ const App = () => {
 
   const onChange = ({ window, screen }) => {
     setDimensions({ window, screen });
-
+    console.log(window);
   };
 
   useEffect(() => {
@@ -62,22 +65,15 @@ const App = () => {
     };
   });
 
-  // const cambioOrientacion = ( ) => {
-
-  //   return <ScannerQR />
-
-  // }
-  
-
   return (
     <EmpContext.Provider value={value} >
       <DripsyProvider theme={theme} >
 
-      <Activo />
-        {/* {(screen === 0) ? <Presentacion /> 
+        {(screen === 0) ? <Presentacion /> 
                   : (screen === 1) ?  <ScannerQR />     
                   : (screen === 2) ? <Activo  />                               
-                  : <Text> Hola de nuevo</Text> } */}
+                  : (screen === 3) ? <Inactivo />
+                  : <ErrorQR /> }
         </DripsyProvider>
     </EmpContext.Provider>
   );

@@ -52,7 +52,7 @@ const Activo = () => {
 
         photo: {
             height: [window.height/2.5, window.height/1.5],
-            width: [window.width/2, window.width/4.5],
+            width: [window.width/2, window.width/3],
             marginTop: ['5%', '2%'],
             marginLeft: [, '6%'],
             borderRadius: 15
@@ -60,13 +60,13 @@ const Activo = () => {
 
         frameStatus: {
             height: [window.height/13, window.height/10 ],
-                    width: [window.width/1.5, window.width/2.5 ],
+                    width: [window.width/2, window.width/2.5 ],
                     backgroundColor: '#FF6363',
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderRadius: 30,
-                    marginTop: [2,3],
-                    marginLeft: [, '30%'],
+                    marginTop: [2,'40%'],
+                    marginLeft: [, '15%'],
         },
 
         estatus: {
@@ -93,6 +93,7 @@ const Activo = () => {
         },
 
         frameDate: {
+            marginTop: ['40%', '0%' ],
             alignItems: ['center', 'flex-end'],
             height: [window.height, window.height],
         },
@@ -105,23 +106,19 @@ const Activo = () => {
         <View>
 
                 <View sx={styles.frameTitle} >
-                    <Text sx={styles.title} >Sin Acceso </Text>
+                    <Text sx={styles.title} >Error de QR </Text>
                 </View>
                  
                  <View sx={styles.framePhoto} >
-                     <Image source={ require('../image/contacto.png') }
+                     <Image source={ require('../image/invalido.png') }
                             sx={styles.photo} />
                 <View>
 
                 <View sx={styles.frameStatus} >
-                    <Text sx={styles.estatus} >Empleado {emp_status} </Text>
+                    <Text sx={styles.estatus} >Invalido QR </Text>
                 </View>
 
-                    <View sx={styles.frameText} >
-                        <Text sx={styles.textName} >Nombre: {emp_nombre} </Text>
-                        <Text sx={styles.textData} >Fecha de baja: {emp_baja} </Text>
 
-                    </View>
 
                 </View>
              </View>
