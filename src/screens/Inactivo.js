@@ -3,16 +3,16 @@ import { View, Text, Image } from 'dripsy';
 import { EmpContext } from '../utils/EmpContext';
 import axios from 'axios';
 
-const Activo = () => {
+const Inactivo = () => {
 
     const datosContext = useContext(EmpContext);
-    const {dimensions, empleado, setState, setScreen } = datosContext; 
+    const {dimensions, empleado, setState, setScreen, sonidoInactivo } = datosContext; 
     const {emp_nombre,  emp_status, emp_baja,  } = empleado;
     const { window } = dimensions;
     let fecha = new Date();
     let option = {hour: "numeric", hour12:"false"}
 
-  
+    sonidoInactivo();
 
     const EnvioDatos = async() => {
 
@@ -138,4 +138,4 @@ const Activo = () => {
     )
 }
 
-export default Activo;
+export default Inactivo;

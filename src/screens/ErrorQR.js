@@ -7,11 +7,13 @@ const Activo = () => {
 
     const datosContext = useContext(EmpContext);
     const {dimensions, empleado, setState, setScreen } = datosContext; 
-    const {emp_nombre,  emp_status, emp_baja,  } = empleado;
+    const {emp_nombre,  emp_status, emp_baja, sonidoInactivo } = empleado;
     const { window } = dimensions;
     let fecha = new Date();
     let option = {hour: "numeric", hour12:"false"}
 
+
+    sonidoInactivo();
   
 
     const EnvioDatos = async() => {

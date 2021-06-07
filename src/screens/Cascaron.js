@@ -1,94 +1,39 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+// import React from 'react'
+// import { View, Text } from 'react-native'
+// import Sound from 'react-native-sound'
 
- import React, { useState } from 'react';
- // import type {Node} from 'react';
- import { Text } from 'react-native';
- import {ScannerQR} from './src/screens/ScannerQR';
- import Presentacion from './src/screens/Presentacion';
- import {DripsyProvider} from 'dripsy';
- import Activo from './src/screens/Activo';
+// var Sound1 = require('react-native-sound');
  
- const theme = {
-   colors: {
-     text: '#000',
-     background: '#fff',
-     primary: '#07c',
-     secondary: '#05a',
-     accent: '#609',
-     muted: '#f6f6f6',
-   },
+// // Enable playback in silence mode
+// Sound1.setCategory('Playback');
  
-   fonts: {
-     body: 'system-ui, sans-serif',
-     heading: 'system-ui, sans-serif',
-     monospace: 'Menlo, monospace',
-   },
-   fontWeights: {
-     body: 400,
-     heading: 700,
-     bold: 700,
-   },
-   lineHeights: {
-     body: 1.5,
-     heading: 1.125,
-   },
+// // Load the sound file 'whoosh.mp3' from the app bundle
+// // See notes below about preloading sounds within initialization code below.
+// var whoosh = new Sound1('whoosh.mp3', Sound.MAIN_BUNDLE, (error) => {
+//   if (error) {
+//     console.log('failed to load the sound', error);
+//     return;
+//   }
+//   // loaded successfully
+//   console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
  
- }
- 
-  
- 
-  const App = () => {
- 
-   const [screen, setScreen] = useState(0);
-   const [state, setState] = useState(true);
-   const [empleado, setEmpleado] = useState(
-     {
-       emp_nombre: '',
-       emp_numero: '',
-       emp_status: '',      
-       emp_puesto: '',
-       emp_area: '',
-       emp_foto: '',
-       emp_baja: '',
-     }
- 
-     // { 
-     // emp_nombre: "Pedro Pica Piedras",
-     // emp_numero: "001456",
-     // emp_puesto: "Gerente de QA", 
-     // emp_area: "QA", 
-     // emp_status: "activo",
-     // emp_foto: "https://cdn.pixabay.com/photo/2016/03/12/23/18/girl-1252995_960_720.jpg"
-     // }
-   );
- 
- 
-     setTimeout(() => {
-        setScreen(1); 
-     }, 4000);
- 
-    return (
-      <DripsyProvider theme={theme} >
- 
-        {/* <Presentacion /> */}
-        {/* <Activo empleado={empleado}
-                setState={setState}    
-                setScreen={setScreen} /> */}
+//   // Play the sound with an onEnd callback
+//   whoosh.play((success) => {
+//     if (success) {
+//       console.log('successfully finished playing');
+//     } else {
+//       console.log('playback failed due to audio decoding errors');
+//     }
+//   });
+// });
 
-        
-      
-      </DripsyProvider>
- 
-    );
-  };
-  
- 
- 
-  export default App;
-  
+
+// const Cascaron = () => {
+//   return (
+//     <View>
+//       <Text></Text>
+//     </View>
+//   )
+// }
+
+// export default Cascaron;

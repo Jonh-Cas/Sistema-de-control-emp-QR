@@ -6,13 +6,14 @@ import axios from 'axios';
 const Activo = () => {
 
     const datosContext = useContext(EmpContext);
-    const {dimensions, empleado, setState, setScreen } = datosContext; 
+    const {dimensions, empleado, setState, setScreen, sonidoActivo } = datosContext; 
     const {emp_nombre, emp_numero, emp_status, emp_puesto, emp_area, emp_foto } = empleado;
     const { window } = dimensions;
     let fecha = new Date();
     let option = {hour: "numeric", hour12:"false"}
 
-  
+
+    sonidoActivo();
 
     const EnvioDatos = async() => {
 
