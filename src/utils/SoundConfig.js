@@ -11,7 +11,7 @@ export const sonidoConfig = (song) => {
   // See notes below about preloading sounds within initialization code below.
    var whoosh = new Sound1(song, Sound.MAIN_BUNDLE, (error) => {
     if (error) {
-      console.log('failed to load the sound', error);
+
       return;
     }
     // loaded successfully
@@ -28,9 +28,7 @@ export const sonidoConfig = (song) => {
 export const reproducirSonido = (whoosh) =>{
     whoosh.play((success) => {
         if (success) {
-          console.log('successfully finished playing');
         } else {
-          console.log('playback failed due to audio decoding errors');
         }
       });
 }

@@ -24,7 +24,7 @@ const Activo = () => {
             data: empleado,
           }).then(e => console.log(e) )
             .catch(err => console.log(err));
-            console.log(JSON.stringify(empleado));
+            console.log(JSON.stringify(empleado, null, 3));
  
     }
 

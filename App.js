@@ -29,6 +29,7 @@ const App = () => {
   const [dimensions, setDimensions] = useState({ window, pantalla });
   const [screen, setScreen] = useState(0);
   const [state, setState] = useState(true);
+  const [boton, setBoton] = useState(true)
   const [orientacion, setOrientacion] = useState('');
   const [empleado, setEmpleado] = useState({
     emp_nombre: "",
@@ -46,17 +47,19 @@ const App = () => {
     state,
     empleado,
     orientacion,
+    boton,
     setEmpleado,
     setScreen,
     setState,
     onChange,
     whoosh,
-    whooshy
+    whooshy,
+    setBoton
   }
 
   const onChange = ({ window, screen }) => {
     setDimensions({ window, screen });
-    console.log(window);
+
   };
 
   useEffect(() => {

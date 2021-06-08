@@ -1,9 +1,10 @@
 'use strict';
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext} from 'react';
+import { TouchableOpacity, Text } from 'react-native';
 import { View } from 'dripsy'
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import { Dimensions } from "react-native";
+
 import { RNCamera } from 'react-native-camera';
 import axios from 'axios';
 import { EmpContext } from '../utils/EmpContext';
@@ -12,8 +13,7 @@ import { EmpContext } from '../utils/EmpContext';
  const ScannerQR = () => {
   //  
   const datosContext = useContext(EmpContext);
-  const { state, orientacion, empleado, dimensions, setScreen, setState, setEmpleado, onChange, } = datosContext;
-  const [camara, setCamara] = useState(false);
+  const { state, orientacion, dimensions, boton, setScreen, setState, setEmpleado, setBoton  } = datosContext;
   const { window } = dimensions; 
   const estiloH = (window.scale === 3)
                 ? {width: 240,
@@ -30,14 +30,6 @@ import { EmpContext } from '../utils/EmpContext';
                    height: 400 }
                 : 300 ;
   
-  //  useEffect(() => {
-  //    Dimensions.addEventListener("change", onChange);
-
-  //    return () => {
-  //      Dimensions.removeEventListener("change", onChange);
-
-  //    };
-  //  });
 
    const verificacionQR = ( url ) => {
 
@@ -48,7 +40,7 @@ import { EmpContext } from '../utils/EmpContext';
                                 ? setScreen(3) : setScreen(4) 
     } catch (error) {
       setScreen(5)
-      console.log('error: ', error );
+      // console.log('error: ', error );
     }
    }
 
@@ -56,10 +48,12 @@ import { EmpContext } from '../utils/EmpContext';
      setState(false);
      const url = await axios.get(e.data)
                             .then(Response => Response.data )
-                            .catch(err => {console.log('Error url:', err) });
-     console.log('valor: ', typeof url);                      
+                            .catch(err =>  err );                    
      verificacionQR(url);
    } 
+
+  
+  
 
   
 
@@ -73,16 +67,29 @@ import { EmpContext } from '../utils/EmpContext';
           onRead={readScanner}
           flashMode={RNCamera.Constants.FlashMode.off}
           permissionDialogMessage='Necesitas permiso para acceder a la camara'
-          reactivateTimeout={3500}
+          reactivateTimeout={3000}
           showMarker={true}
           reactivate={state}
-          fadeIn={camara}
-
+          // fadeIn={!state}
           markerStyle={(orientacion === 'horizontal')
             ? estiloH : estiloV
           }
-        
+          cameraType={(boton)? 'back': 'front'}       
           cameraStyle={ styles.camara }
+          bottomContent={
+              <TouchableOpacity style={{ height: 60,
+                                          width: 60,
+                                          borderWidth:1,
+                                          marginBottom: 100,
+                                          justifyContent: 'center',
+                                          backgroundColor: 'white',
+                                          borderRadius: 30,
+                                          borderColor: 'white',}}
+                                onPress={() =>    setBoton(!boton)} 
+                >
+                <Text style={{textAlign: 'center'}} > { (boton)? 'FRONT' : 'BACK' } </Text>
+              </TouchableOpacity>
+          }
 
         />
 

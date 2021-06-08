@@ -92,21 +92,18 @@ const ErrorQR = () => {
 
     return (
         <View>
-
                 <View sx={styles.frameTitle} >
                     <Text sx={styles.title} >Error de QR </Text>
                 </View>
-                 
+
                  <View sx={styles.framePhoto} >
                      <Image source={ require('../image/invalido.png') }
                             sx={styles.photo} />
-                <View>
+                 <View>
 
                 <View sx={styles.frameStatus} >
                     <Text sx={styles.estatus} >Invalido QR </Text>
                 </View>
-
-
 
                 </View>
              </View>
